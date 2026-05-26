@@ -86,7 +86,7 @@ export function Footer() {
         </li>
         <li>
           <a
-            href="https://twitter.com/ClerkDev"
+            href="https://x.com/clerk"
             target="_blank"
             className="flex items-center gap-2 font-medium text-[0.8125rem] rounded-full px-3 py-2 hover:bg-gray-100"
           >
@@ -114,7 +114,7 @@ export function Footer() {
         </li>
         <li>
           <a
-            href="https://discord.com/invite/b5rXHjAg7A"
+            href="https://clerk.com/discord"
             target="_blank"
             className="flex items-center gap-2 font-medium text-[0.8125rem] rounded-full px-3 py-2 hover:bg-gray-100"
           >
