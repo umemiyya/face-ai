@@ -40,7 +40,6 @@ export function LandingHero() {
           <h1 className="text-5xl font-bold tracking-tight text-[#131316] relative">
             Auth starts here
           </h1>
-
           <p className="text-[#5E5F6E] pt-3 pb-6 max-w-120 text-[1.0625rem] relative">
             A simple and powerful Next.js template featuring authentication and
             user management powered by Clerk.
@@ -55,54 +54,11 @@ export function LandingHero() {
               </Link>
             </Show>
             <Show when="signed-out">
-              <SignInButton>
-                <button className="px-4 py-2 rounded-full bg-[#131316] text-white text-sm font-semibold">
-                  Sign in
-                </button>
-              </SignInButton>
+              <SignInButton />
             </Show>
           </div>
         </div>
-        <div className="flex gap-8 w-full h-165 scale-[1.03]">
-          <div className="space-y-8 translate-y-12">
-            <Image
-              alt="Device"
-              src={signUp}
-              unoptimized
-              className="flex-none rounded-xl bg-white shadow-[0_5px_15px_rgba(0,0,0,0.08),0_15px_35px_-5px_rgba(25,28,33,0.2)] ring-1 ring-gray-950/5"
-            />
-          </div>
-          <div className="space-y-8 -translate-y-4">
-            <Image
-              alt="Device"
-              src={verify}
-              unoptimized
-              className="flex-none rounded-xl bg-white shadow-[0_5px_15px_rgba(0,0,0,0.08),0_15px_35px_-5px_rgba(25,28,33,0.2)] ring-1 ring-gray-950/5"
-            />
-            <Image
-              alt="Device"
-              src={userButton2}
-              unoptimized
-              className="flex-none rounded-xl bg-white shadow-[0_5px_15px_rgba(0,0,0,0.08),0_15px_35px_-5px_rgba(25,28,33,0.2)] ring-1 ring-gray-950/5"
-            />
-          </div>
-          <div className="space-y-8 -translate-y-90">
-            <Image
-              alt="Device"
-              src={signIn}
-              unoptimized
-              className="flex-none rounded-xl bg-white shadow-[0_5px_15px_rgba(0,0,0,0.08),0_15px_35px_-5px_rgba(25,28,33,0.2)] ring-1 ring-gray-950/5"
-            />
-            <Image
-              alt="Device"
-              src={screenshotDevices}
-              unoptimized
-              className="flex-none rounded-xl bg-white shadow-[0_5px_15px_rgba(0,0,0,0.08),0_15px_35px_-5px_rgba(25,28,33,0.2)] ring-1 ring-gray-950/5"
-            />
-          </div>
-        </div>
       </div>
-      <div className="absolute left-0 right-0 bottom-0 h-75 bg-linear-to-t from-white" />
     </main>
   );
 }
