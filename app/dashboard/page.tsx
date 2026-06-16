@@ -3,7 +3,7 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { Footer } from "../_template/components/footer";
 import Link from "next/link";
 import { DetectCard } from "./components/detect-card";
-import UsersPage from "./components/admin-page";
+import AdminPage from "./components/admin-page";
 
 export default async function DashboardPage() {
   await auth.protect();
@@ -13,8 +13,9 @@ export default async function DashboardPage() {
   const email = user?.emailAddresses[0].emailAddress;
 
   if(email == "firanurul64@gmail.com") {
+  // if(email == "nanashieth@gmail.com") {
     // Handle unauthorized access
-    return <UsersPage />;
+    return <AdminPage />;
   }
 
   return (
