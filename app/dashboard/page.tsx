@@ -1,11 +1,21 @@
 import { UserButton } from "@clerk/nextjs";
-import { auth } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { Footer } from "../_template/components/footer";
 import Link from "next/link";
 import { DetectCard } from "./components/detect-card";
+import UsersPage from "./components/admin-page";
 
 export default async function DashboardPage() {
   await auth.protect();
+
+  const user = await currentUser();
+
+  const email = user?.emailAddresses[0].emailAddress;
+
+  if(email == "firanurul64@gmail.com") {
+    // Handle unauthorized access
+    return <UsersPage />;
+  }
 
   return (
     <>

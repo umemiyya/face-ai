@@ -120,7 +120,7 @@ export default function LandingPage() {
 
             <div className="flex flex-col sm:flex-row justify-center gap-4 mt-10">
               <Link
-                href="/signup"
+                href="/dashboard"
                 className="h-14 px-8 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center gap-2"
               >
                 Mulai Sekarang
