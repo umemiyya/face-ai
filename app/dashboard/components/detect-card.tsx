@@ -33,33 +33,87 @@ export function DetectCard() {
   };
 
   const handleAnalyze = async () => {
-    if (!file) return;
+  if (!file) return;
 
-    try {
-      setLoading(true);
-      setError("");
+  try {
+    setLoading(true);
+    setError("");
 
-      const formData = new FormData();
-      formData.append("file", file);
+    // Step 1: Validasi apakah gambar berisi wajah
+    const faceFormData = new FormData();
+    faceFormData.append("file", file);
 
-      const response = await fetch("/api/detect", {
-        method: "POST",
-        body: formData,
-      });
+    const faceCheckResponse = await fetch("/api/check-face", {
+      method: "POST",
+      body: faceFormData,
+    });
 
-      const data = await response.json();
+    const faceCheckData = await faceCheckResponse.json();
 
-      if (!response.ok) {
-        throw new Error(data.error || "Gagal melakukan analisis");
-      }
-
-      setResult(data);
-    } catch (err: any) {
-      setError(err.message || "Terjadi kesalahan");
-    } finally {
-      setLoading(false);
+    if (!faceCheckResponse.ok) {
+      throw new Error(faceCheckData.error || "Gagal memvalidasi gambar");
     }
-  };
+
+    if (!faceCheckData.isFace) {
+      setError(
+        faceCheckData.reason ||
+          "Gambar yang diunggah bukan wajah. Silakan unggah foto yang menampilkan wajah dengan jelas."
+      );
+      setLoading(false);
+      return;
+    }
+
+    // Step 2: Lanjut ke deteksi deepfake asli
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const response = await fetch("/api/detect", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Gagal melakukan analisis");
+    }
+
+    setResult(data);
+  } catch (err: any) {
+    setError(err.message || "Terjadi kesalahan");
+  } finally {
+    setLoading(false);
+  }
+};
+
+  // const handleAnalyze = async () => {
+  //   if (!file) return;
+
+  //   try {
+  //     setLoading(true);
+  //     setError("");
+
+  //     const formData = new FormData();
+  //     formData.append("file", file);
+
+  //     const response = await fetch("/api/detect", {
+  //       method: "POST",
+  //       body: formData,
+  //     });
+
+  //     const data = await response.json();
+
+  //     if (!response.ok) {
+  //       throw new Error(data.error || "Gagal melakukan analisis");
+  //     }
+
+  //     setResult(data);
+  //   } catch (err: any) {
+  //     setError(err.message || "Terjadi kesalahan");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const score =
     (result?.resultsSummary?.metadata?.finalScore || result?.score || 0) *
