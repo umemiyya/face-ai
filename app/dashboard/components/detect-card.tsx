@@ -62,55 +62,78 @@ export function DetectCard() {
   };
 
   const score =
-    (result?.resultsSummary?.metadata?.finalScore ||
-      result?.score ||
-      0) * 100;
+    (result?.resultsSummary?.metadata?.finalScore || result?.score || 0) *
+    100;
 
-  const status =
-    result?.resultsSummary?.status ||
-    result?.status ||
-    "UNKNOWN";
+  const status = result?.resultsSummary?.status || result?.status || "TIDAK DIKETAHUI";
 
   const isAuthentic = status === "AUTHENTIC";
 
   return (
-    <div className="min-h-screen bg-gradient-to-b rounded-2xl from-slate-50 via-white to-blue-50">
-      <div className="max-w-6xl mx-auto px-6 py-12">
+    <div className="relative min-h-screen overflow-hidden rounded-2xl bg-[#F3E7D3]">
+      {/* Motif batik kawung sebagai latar belakang halus */}
+      <svg
+        className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.06]"
+        aria-hidden="true"
+      >
+        <defs>
+          <pattern
+            id="kawung-detect"
+            x="0"
+            y="0"
+            width="60"
+            height="60"
+            patternUnits="userSpaceOnUse"
+          >
+            <g fill="none" stroke="#6B3226" strokeWidth="1.5">
+              <ellipse cx="15" cy="15" rx="12" ry="8" transform="rotate(45 15 15)" />
+              <ellipse cx="45" cy="15" rx="12" ry="8" transform="rotate(-45 45 15)" />
+              <ellipse cx="15" cy="45" rx="12" ry="8" transform="rotate(-45 15 45)" />
+              <ellipse cx="45" cy="45" rx="12" ry="8" transform="rotate(45 45 45)" />
+              <circle cx="30" cy="30" r="4" />
+            </g>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#kawung-detect)" />
+      </svg>
+
+      {/* Garis prada emas */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[#C89B3C] via-[#E4C879] to-[#C89B3C]" />
+
+      <div className="relative z-10 mx-auto max-w-6xl px-6 py-12">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-medium">
+        <div className="mb-12 text-center">
+          <div className="inline-flex items-center gap-2 rounded-full bg-[#7A2E2E]/10 px-4 py-2 text-sm font-medium text-[#7A2E2E]">
             <Shield className="h-4 w-4" />
-            Deepfake Detection AI
+            Deteksi Wajah Palsu Berbasis AI
           </div>
 
-          <h1 className="mt-6 text-3xl font-bold text-slate-900">
+          <h1 className="mt-6 font-serif text-3xl text-[#3A2417]">
             Deteksi Keaslian Wajah
           </h1>
 
-          <p className="mt-4 text-slate-600 max-w-2xl mx-auto">
+          <p className="mx-auto mt-4 max-w-2xl text-[#6B5A47]">
             Unggah gambar untuk menganalisis apakah foto merupakan gambar asli
-            atau hasil manipulasi AI menggunakan teknologi Deepfake Detection.
+            atau hasil manipulasi AI menggunakan teknologi Deteksi Deepfake.
           </p>
         </div>
 
-        {/* Main Card */}
-        <div className="bg-white rounded-3xl border-slate-200 p-8">
+        {/* Kartu Utama */}
+        <div className="rounded-3xl border border-[#C89B3C]/30 bg-[#FBF4E8] p-8 shadow-sm">
           {!preview ? (
-            <label htmlFor="file" className="cursor-pointer block">
-              <div className="border-2 border-dashed border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 rounded-3xl p-20 text-center">
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-2xl bg-blue-100">
-                  <UploadCloud className="h-10 w-10 text-blue-600" />
+            <label htmlFor="file" className="block cursor-pointer">
+              <div className="rounded-3xl border-2 border-dashed border-[#C89B3C]/50 p-20 text-center transition-all duration-300 hover:border-[#7A2E2E] hover:bg-[#F3E7D3]">
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-2xl bg-[#7A2E2E]/10">
+                  <UploadCloud className="h-10 w-10 text-[#7A2E2E]" />
                 </div>
 
-                <h3 className="mt-6 text-xl font-semibold text-slate-900">
-                  Upload Gambar
+                <h3 className="mt-6 text-xl font-semibold text-[#3A2417]">
+                  Unggah Gambar
                 </h3>
 
-                <p className="text-slate-500 mt-2">
-                  Klik untuk memilih gambar
-                </p>
+                <p className="mt-2 text-[#6B5A47]">Klik untuk memilih gambar</p>
 
-                <p className="text-sm text-slate-400 mt-2">
+                <p className="mt-2 text-sm text-[#8A6A3B]">
                   Mendukung JPG, PNG, WEBP
                 </p>
               </div>
@@ -130,13 +153,13 @@ export function DetectCard() {
               />
             </label>
           ) : (
-            <div className="grid lg:grid-cols-2 gap-10">
+            <div className="grid gap-10 lg:grid-cols-2">
               {/* Preview */}
               <div>
-                <div className="relative aspect-square rounded-3xl overflow-hidden border border-slate-200 shadow-lg">
+                <div className="relative aspect-square overflow-hidden rounded-3xl border border-[#C89B3C]/30 shadow-lg">
                   <Image
                     src={preview}
-                    alt="Preview"
+                    alt="Pratinjau"
                     fill
                     className="object-cover"
                   />
@@ -149,27 +172,27 @@ export function DetectCard() {
                     setResult(null);
                     setError("");
                   }}
-                  className="mt-4 flex items-center gap-2 text-sm text-slate-500 hover:text-blue-600 transition"
+                  className="mt-4 flex items-center gap-2 text-sm text-[#6B5A47] transition hover:text-[#7A2E2E]"
                 >
                   <RefreshCcw size={16} />
                   Ganti Gambar
                 </button>
               </div>
 
-              {/* Action */}
+              {/* Aksi */}
               <div className="flex flex-col justify-center">
-                <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-xl px-4 py-2 w-fit">
-                  <Shield className="h-4 w-4 text-blue-600" />
-                  <span className="text-blue-700 text-sm font-medium">
+                <div className="inline-flex w-fit items-center gap-2 rounded-xl border border-[#C89B3C]/40 bg-[#F3E7D3] px-4 py-2">
+                  <Shield className="h-4 w-4 text-[#7A2E2E]" />
+                  <span className="text-sm font-medium text-[#7A2E2E]">
                     Siap Dianalisis
                   </span>
                 </div>
 
-                <h2 className="mt-6 text-3xl font-bold text-slate-900">
+                <h2 className="mt-6 font-serif text-3xl text-[#3A2417]">
                   Analisis Deepfake
                 </h2>
 
-                <p className="mt-3 text-slate-600 leading-relaxed">
+                <p className="mt-3 leading-relaxed text-[#6B5A47]">
                   Sistem akan memeriksa pola visual, artefak AI, serta indikasi
                   manipulasi digital untuk menentukan tingkat keaslian gambar.
                 </p>
@@ -177,7 +200,7 @@ export function DetectCard() {
                 <button
                   onClick={handleAnalyze}
                   disabled={loading}
-                  className="mt-8 h-14 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold shadow-lg transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                  className="mt-8 flex h-14 items-center justify-center gap-2 rounded-2xl bg-[#7A2E2E] font-semibold text-[#F3E7D3] shadow-lg transition-all hover:bg-[#5F2323] disabled:opacity-50"
                 >
                   {loading ? (
                     <>
@@ -198,24 +221,24 @@ export function DetectCard() {
 
         {/* Error */}
         {error && (
-          <div className="mt-6 bg-red-50 border border-red-200 rounded-2xl p-4">
-            <p className="text-red-600">{error}</p>
+          <div className="mt-6 rounded-2xl border border-[#7A2E2E]/30 bg-[#7A2E2E]/10 p-4">
+            <p className="text-[#7A2E2E]">{error}</p>
           </div>
         )}
 
-        {/* Result */}
+        {/* Hasil */}
         {result && (
-          <div className="mt-10 bg-white border border-slate-200 rounded-3xl shadow-xl p-8">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              <h2 className="text-3xl font-bold text-slate-900">
+          <div className="mt-10 rounded-3xl border border-[#C89B3C]/30 bg-[#FBF4E8] p-8 shadow-xl">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <h2 className="font-serif text-3xl text-[#3A2417]">
                 Hasil Analisis
               </h2>
 
               <div
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full font-medium w-fit ${
+                className={`inline-flex w-fit items-center gap-2 rounded-full px-4 py-2 font-medium ${
                   isAuthentic
-                    ? "bg-green-100 text-green-700"
-                    : "bg-red-100 text-red-700"
+                    ? "bg-[#4B6B3A]/10 text-[#4B6B3A]"
+                    : "bg-[#7A2E2E]/10 text-[#7A2E2E]"
                 }`}
               >
                 {isAuthentic ? (
@@ -224,30 +247,26 @@ export function DetectCard() {
                   <AlertTriangle size={18} />
                 )}
 
-                {isAuthentic
-                  ? "Gambar Asli"
-                  : "Terindikasi Deepfake"}
+                {isAuthentic ? "Gambar Asli" : "Terindikasi Deepfake"}
               </div>
             </div>
 
-            {/* Score */}
+            {/* Skor */}
             <div className="mt-8">
-              <div className="flex justify-between mb-3">
-                <span className="text-slate-600">
-                  Tingkat Kepalsuan 
-                </span>
+              <div className="mb-3 flex justify-between">
+                <span className="text-[#6B5A47]">Tingkat Kepalsuan</span>
 
-                <span className="font-bold text-slate-900">
+                <span className="font-bold text-[#3A2417]">
                   {score.toFixed(2)}%
                 </span>
               </div>
 
-              <div className="w-full h-4 rounded-full bg-slate-100 overflow-hidden">
+              <div className="h-4 w-full overflow-hidden rounded-full bg-[#EADFC8]">
                 <div
                   className={`h-full rounded-full transition-all duration-1000 ${
                     isAuthentic
-                      ? "bg-gradient-to-r from-green-500 to-emerald-500"
-                      : "bg-gradient-to-r from-red-500 to-rose-500"
+                      ? "bg-gradient-to-r from-[#4B6B3A] to-[#6B8A52]"
+                      : "bg-gradient-to-r from-[#7A2E2E] to-[#9C4A3E]"
                   }`}
                   style={{
                     width: `${score}%`,
@@ -256,46 +275,40 @@ export function DetectCard() {
               </div>
             </div>
 
-            {/* Stats */}
-            <div className="grid md:grid-cols-3 gap-5 mt-8">
-              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5">
-                <p className="text-sm text-slate-500">Status</p>
+            {/* Statistik */}
+            <div className="mt-8 grid gap-5 md:grid-cols-3">
+              <div className="rounded-2xl border border-[#C89B3C]/30 bg-[#F3E7D3] p-5">
+                <p className="text-sm text-[#8A6A3B]">Status</p>
 
-                <p className="text-xl font-bold text-slate-900 mt-2">
-                  {isAuthentic
-                  ? "Gambar Asli"
-                  : "Terindikasi Deepfake"}
+                <p className="mt-2 text-xl font-bold text-[#3A2417]">
+                  {isAuthentic ? "Gambar Asli" : "Terindikasi Deepfake"}
                 </p>
               </div>
 
-              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5">
-                <p className="text-sm text-slate-500">
-                  Deepfake Score
-                </p>
+              <div className="rounded-2xl border border-[#C89B3C]/30 bg-[#F3E7D3] p-5">
+                <p className="text-sm text-[#8A6A3B]">Skor Deepfake</p>
 
-                <p className="text-xl font-bold text-slate-900 mt-2">
+                <p className="mt-2 text-xl font-bold text-[#3A2417]">
                   {score.toFixed(2)}%
                 </p>
               </div>
 
-              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5">
-                <p className="text-sm text-slate-500">
-                  Nama File
-                </p>
+              <div className="rounded-2xl border border-[#C89B3C]/30 bg-[#F3E7D3] p-5">
+                <p className="text-sm text-[#8A6A3B]">Nama File</p>
 
-                <p className="text-sm font-medium text-slate-900 mt-2 truncate">
+                <p className="mt-2 truncate text-sm font-medium text-[#3A2417]">
                   {file?.name}
                 </p>
               </div>
             </div>
 
-            {/* Summary */}
-            <div className="mt-8 rounded-2xl bg-blue-50 border border-blue-100 p-6">
-              <h3 className="font-semibold text-slate-900 mb-3">
+            {/* Ringkasan */}
+            <div className="mt-8 rounded-2xl border border-[#C89B3C]/30 bg-[#F3E7D3] p-6">
+              <h3 className="mb-3 font-semibold text-[#3A2417]">
                 Ringkasan Analisis
               </h3>
 
-              <p className="text-slate-600 leading-relaxed">
+              <p className="leading-relaxed text-[#6B5A47]">
                 {isAuthentic
                   ? "Gambar tidak menunjukkan indikasi manipulasi berbasis AI yang signifikan. Berdasarkan hasil analisis sistem, gambar ini kemungkinan besar merupakan foto asli."
                   : "Sistem menemukan pola visual yang sering muncul pada gambar hasil generasi AI atau manipulasi digital. Disarankan untuk melakukan verifikasi tambahan sebelum menggunakan gambar ini sebagai sumber informasi penting."}

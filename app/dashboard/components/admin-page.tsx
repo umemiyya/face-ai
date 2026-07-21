@@ -47,17 +47,26 @@ export default async function AdminPage() {
     ...deepfakeImages,
   ];
 
-  return (
-        <>
-      <main className="max-w-300 w-full mx-auto">
+  // Tekstur motif kawung tipis sebagai latar, senada dengan halaman SignIn
+  const kawungPattern =
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23C89B3C' stroke-width='1' opacity='0.35'%3E%3Cellipse cx='20' cy='20' rx='14' ry='9' transform='rotate(45 20 20)'/%3E%3Cellipse cx='60' cy='20' rx='14' ry='9' transform='rotate(-45 60 20)'/%3E%3Cellipse cx='20' cy='60' rx='14' ry='9' transform='rotate(-45 20 60)'/%3E%3Cellipse cx='60' cy='60' rx='14' ry='9' transform='rotate(45 60 60)'/%3E%3Ccircle cx='40' cy='40' r='3'/%3E%3C/g%3E%3C/svg%3E";
 
-    <div className="min-h-screen bg-slate-50">
-        <div>
+  return (
+    <>
+      <main className="max-w-300 w-full mx-auto">
+        <div
+          className="min-h-screen bg-[#FBF4E8]"
+          style={{
+            backgroundImage: `url("${kawungPattern}")`,
+            backgroundRepeat: "repeat",
+          }}
+        >
+          <div>
             <header className="flex items-center justify-between w-full h-16 gap-4">
               <div className="flex gap-4">
                 <Link
                   href="/"
-                  className="flex items-center gap-2 font-medium text-[0.8125rem] rounded-full px-3 py-2 hover:bg-gray-100"
+                  className="flex items-center gap-2 font-medium text-[0.8125rem] rounded-full px-3 py-2 text-[#7A2E2E] hover:bg-[#F3E7D3]"
                 >
                   <svg
                     className="w-4 h-4"
@@ -72,7 +81,7 @@ export default async function AdminPage() {
                       d="M15 19l-7-7 7-7"
                     />
                   </svg>
-                  Back to Home
+                  Kembali ke Beranda
                 </Link>
               </div>
               <div className="flex items-center gap-2">
@@ -87,113 +96,113 @@ export default async function AdminPage() {
             </header>
           </div>
 
-      <div className="mx-auto max-w-7xl p-8">
+          <div className="mx-auto max-w-7xl p-8">
 
-        {/* HEADER */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold">
-            Dataset Management
-          </h1>
+            {/* HEADER */}
+            <div className="mb-8">
+              <h1 className="text-3xl font-bold font-serif text-[#7A2E2E]">
+                Manajemen Dataset
+              </h1>
 
-          <p className="mt-2 text-slate-500">
-            Kelola dan pantau dataset gambar
-            untuk pelatihan model
-          </p>
-        </div>
+              <p className="mt-2 text-[#5B4636]/80">
+                Kelola dan pantau dataset gambar
+                untuk pelatihan model
+              </p>
+            </div>
 
-        {/* STATS */}
-        <div className="mb-8 grid gap-6 md:grid-cols-3">
+            {/* STATS */}
+            <div className="mb-8 grid gap-6 md:grid-cols-3">
 
-          <div className="rounded-md border bg-white p-8 ">
-            <h2 className="text-center text-5xl font-bold">
-              {images.length}
-            </h2>
+              <div className="rounded-md border border-[#C89B3C]/40 bg-[#FBF4E8] p-8">
+                <h2 className="text-center text-5xl font-bold font-serif text-[#7A2E2E]">
+                  {images.length}
+                </h2>
 
-            <p className="mt-3 text-center text-slate-500">
-              Total Gambar
-            </p>
-          </div>
+                <p className="mt-3 text-center text-[#5B4636]/80">
+                  Total Gambar
+                </p>
+              </div>
 
-          <div className="rounded-md border bg-white p-8 ">
-            <h2 className="text-center text-5xl font-bold text-green-600">
-              {asliImages.length}
-            </h2>
+              <div className="rounded-md border border-[#C89B3C]/40 bg-[#FBF4E8] p-8">
+                <h2 className="text-center text-5xl font-bold font-serif text-[#4B6B3A]">
+                  {asliImages.length}
+                </h2>
 
-            <p className="mt-3 text-center text-slate-500">
-              Wajah Asli
-            </p>
-          </div>
+                <p className="mt-3 text-center text-[#5B4636]/80">
+                  Wajah Asli
+                </p>
+              </div>
 
-          <div className="rounded-md border bg-white p-8 ">
-            <h2 className="text-center text-5xl font-bold text-red-500">
-              {deepfakeImages.length}
-            </h2>
+              <div className="rounded-md border border-[#C89B3C]/40 bg-[#FBF4E8] p-8">
+                <h2 className="text-center text-5xl font-bold font-serif text-[#7A2E2E]">
+                  {deepfakeImages.length}
+                </h2>
 
-            <p className="mt-3 text-center text-slate-500">
-              Deepfake
-            </p>
-          </div>
+                <p className="mt-3 text-center text-[#5B4636]/80">
+                  Deepfake
+                </p>
+              </div>
 
-        </div>
+            </div>
 
-        {/* DATASET */}
-        <div className="rounded-md border bg-white p-8 ">
+            {/* DATASET */}
+            <div className="rounded-md border border-[#C89B3C]/40 bg-[#FBF4E8] p-8">
 
-          <h2 className="text-3xl font-bold">
-            Dataset Images
-          </h2>
+              <h2 className="text-3xl font-bold font-serif text-[#7A2E2E]">
+                Gambar Dataset
+              </h2>
 
-          <p className="mt-1 text-slate-500">
-            {images.length} gambar dalam database
-          </p>
+              <p className="mt-1 text-[#5B4636]/80">
+                {images.length} gambar dalam database
+              </p>
 
-          <div className="mt-8 grid grid-cols-2 gap-5 md:grid-cols-4 xl:grid-cols-6">
+              <div className="mt-8 grid grid-cols-2 gap-5 md:grid-cols-4 xl:grid-cols-6">
 
-            {images.map((image) => (
-              <div key={image.src}>
+                {images.map((image) => (
+                  <div key={image.src}>
 
-                <div className="overflow-hidden rounded-2xl border">
-                  <Image
-                    src={image.src}
-                    alt={image.filename}
-                    width={400}
-                    height={400}
-                    className="aspect-square w-full object-cover"
-                  />
-                </div>
+                    <div className="overflow-hidden rounded-2xl border border-[#C89B3C]/40">
+                      <Image
+                        src={image.src}
+                        alt={image.filename}
+                        width={400}
+                        height={400}
+                        className="aspect-square w-full object-cover"
+                      />
+                    </div>
 
-                <div className="mt-2">
+                    <div className="mt-2">
 
-                  <p
-                    className={`text-sm font-medium ${
-                      image.label === "Asli"
-                        ? "text-green-600"
-                        : "text-red-500"
-                    }`}
-                  >
-                    {image.label === "Asli"
-                      ? "✓ Asli"
-                      : "⚠ Deepfake"}
-                  </p>
+                      <p
+                        className={`text-sm font-medium ${
+                          image.label === "Asli"
+                            ? "text-[#4B6B3A]"
+                            : "text-[#7A2E2E]"
+                        }`}
+                      >
+                        {image.label === "Asli"
+                          ? "✓ Asli"
+                          : "⚠ Deepfake"}
+                      </p>
 
-                  <p className="truncate text-sm text-slate-500">
-                    {image.filename}
-                  </p>
+                      <p className="truncate text-sm text-[#5B4636]/70">
+                        {image.filename}
+                      </p>
 
-                </div>
+                    </div>
+
+                  </div>
+                ))}
 
               </div>
-            ))}
+
+            </div>
 
           </div>
-
         </div>
-
-      </div>
-    </div>
-          </main>
-          {/* <LearnMore cards={DASHBOARD_CARDS} /> */}
-          <Footer />
-        </>
+      </main>
+      {/* <LearnMore cards={DASHBOARD_CARDS} /> */}
+      <Footer />
+    </>
   );
 }

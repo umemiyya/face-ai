@@ -7,7 +7,7 @@ import os from "os";
 export const runtime = "nodejs";
 
 const rd = new RealityDefender({
-  apiKey: 'rd_f594ed76e85941b8_2e14eff5bb185348e1b1b7428e11a469',
+  apiKey: 'rd_37e70968aa15df16_6f9058198999a202412dc5137c8f1d69',
 });
 
 export async function POST(req: NextRequest) {

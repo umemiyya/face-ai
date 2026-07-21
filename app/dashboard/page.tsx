@@ -18,16 +18,26 @@ export default async function DashboardPage() {
     return <AdminPage />;
   }
 
+  // Tekstur motif kawung tipis sebagai latar, senada dengan halaman SignIn & Admin
+  const kawungPattern =
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23C89B3C' stroke-width='1' opacity='0.35'%3E%3Cellipse cx='20' cy='20' rx='14' ry='9' transform='rotate(45 20 20)'/%3E%3Cellipse cx='60' cy='20' rx='14' ry='9' transform='rotate(-45 60 20)'/%3E%3Cellipse cx='20' cy='60' rx='14' ry='9' transform='rotate(-45 20 60)'/%3E%3Cellipse cx='60' cy='60' rx='14' ry='9' transform='rotate(45 60 60)'/%3E%3Ccircle cx='40' cy='40' r='3'/%3E%3C/g%3E%3C/svg%3E";
+
   return (
     <>
       <main className="max-w-300 w-full mx-auto">
-        <div className="grid gap-10 pb-10">
+        <div
+          className="grid gap-10 pb-10 bg-[#FBF4E8]"
+          style={{
+            backgroundImage: `url("${kawungPattern}")`,
+            backgroundRepeat: "repeat",
+          }}
+        >
           <div>
             <header className="flex items-center justify-between w-full h-16 gap-4">
               <div className="flex gap-4">
                 <Link
                   href="/"
-                  className="flex items-center gap-2 font-medium text-[0.8125rem] rounded-full px-3 py-2 hover:bg-gray-100"
+                  className="flex items-center gap-2 font-medium text-[0.8125rem] rounded-full px-3 py-2 text-[#7A2E2E] hover:bg-[#F3E7D3]"
                 >
                   <svg
                     className="w-4 h-4"
@@ -42,7 +52,7 @@ export default async function DashboardPage() {
                       d="M15 19l-7-7 7-7"
                     />
                   </svg>
-                  Back to Home
+                  Kembali ke Beranda
                 </Link>
               </div>
               <div className="flex items-center gap-2">
