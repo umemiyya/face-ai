@@ -62,6 +62,7 @@ export default async function DashboardPage() {
                       userButtonAvatarBox: "size-8",
                     },
                   }}
+                  
                 />
               </div>
             </header>
